@@ -1,0 +1,18 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#132028"/>
+  <rect x="64" y="64" width="832" height="1032" rx="56" fill="url(#bg)"/>
+  <circle cx="758" cy="238" r="132" fill="#C9F1FF" fill-opacity="0.22"/>
+  <path d="M340 300H620L706 382L646 460H588V816H372V460H314L254 382L340 300Z" fill="#E8EDF0" fill-opacity="0.92"/>
+  <path d="M380 420H580" stroke="#1C3342" stroke-width="22" stroke-linecap="round"/>
+  <path d="M380 500H580" stroke="#1C3342" stroke-width="22" stroke-linecap="round"/>
+  <path d="M420 300H540L566 376H394L420 300Z" fill="#1C3342" fill-opacity="0.92"/>
+  <text x="116" y="968" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-0.06em">Metro Stripe Polo Tee</text>
+  <text x="118" y="1028" fill="#F7F2EA" fill-opacity="0.68" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">NAVY / STRIPE PANEL / OPEN COLLAR</text>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="128" x2="822" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4D7C91"/>
+      <stop offset="0.52" stop-color="#2D5061"/>
+      <stop offset="1" stop-color="#16262E"/>
+    </linearGradient>
+  </defs>
+</svg>

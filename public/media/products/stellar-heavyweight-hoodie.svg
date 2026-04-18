@@ -1,0 +1,18 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#161412"/>
+  <rect x="64" y="64" width="832" height="1032" rx="56" fill="url(#bg)"/>
+  <circle cx="752" cy="238" r="136" fill="#F6D2A2" fill-opacity="0.26"/>
+  <circle cx="202" cy="872" r="184" fill="#FFFFFF" fill-opacity="0.08"/>
+  <path d="M292 338L416 246H544L668 338L740 466L650 522L596 446V832H364V446L310 522L220 466L292 338Z" fill="#0B0B0B" fill-opacity="0.92"/>
+  <path d="M416 246H544L572 326H388L416 246Z" fill="#EEE6D9" fill-opacity="0.84"/>
+  <path d="M476 326H484V832H476V326Z" fill="#EEE6D9" fill-opacity="0.3"/>
+  <text x="116" y="968" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-0.06em">Stellar Heavyweight Hoodie</text>
+  <text x="118" y="1028" fill="#F7F2EA" fill-opacity="0.68" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">CHARCOAL / 480 GSM / OVERSIZED FIT</text>
+  <defs>
+    <linearGradient id="bg" x1="124" y1="138" x2="826" y2="1032" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#4D4038"/>
+      <stop offset="0.52" stop-color="#292321"/>
+      <stop offset="1" stop-color="#151311"/>
+    </linearGradient>
+  </defs>
+</svg>

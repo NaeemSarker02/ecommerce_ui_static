@@ -1,0 +1,18 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#121516"/>
+  <rect x="64" y="64" width="832" height="1032" rx="56" fill="url(#bg)"/>
+  <circle cx="184" cy="242" r="130" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="752" cy="884" r="182" fill="#F4D9B7" fill-opacity="0.18"/>
+  <path d="M218 518C240 454 300 416 366 416H438C488 416 532 438 558 474L598 530H486C448 530 414 554 396 586L386 604H324C256 604 204 552 204 484C204 496 208 506 218 518Z" fill="#080909" fill-opacity="0.92"/>
+  <path d="M432 530H602L640 484C668 448 714 426 766 426H784C826 426 860 460 860 502C860 560 814 606 756 606H654L648 592C628 554 592 530 550 530H432Z" fill="#181A1B" fill-opacity="0.94"/>
+  <path d="M392 586H648" stroke="#ECE2D6" stroke-opacity="0.52" stroke-width="18" stroke-linecap="round"/>
+  <text x="116" y="968" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-0.06em">Vector Wrap Shades</text>
+  <text x="118" y="1028" fill="#F7F2EA" fill-opacity="0.68" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">BLACK / SILVER / BOLD SIDE PROFILE</text>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="128" x2="818" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3D4547"/>
+      <stop offset="0.52" stop-color="#212528"/>
+      <stop offset="1" stop-color="#111517"/>
+    </linearGradient>
+  </defs>
+</svg>

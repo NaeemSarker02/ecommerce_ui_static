@@ -1,0 +1,18 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#111920"/>
+  <rect x="64" y="64" width="832" height="1032" rx="56" fill="url(#bg)"/>
+  <circle cx="196" cy="252" r="132" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="760" cy="888" r="190" fill="#B6E8FF" fill-opacity="0.22"/>
+  <path d="M214 500C228 434 286 390 356 390H426C486 390 534 426 548 484L560 534H468C424 534 388 570 388 614V620H318C256 620 206 570 206 508C206 506 206 504 206 502L214 500Z" fill="#0B1014" fill-opacity="0.92"/>
+  <path d="M428 534H534L548 484C564 426 612 390 674 390H726C790 390 842 442 842 506C842 570 790 622 726 622H646V614C646 570 610 534 566 534H428Z" fill="#0B1014" fill-opacity="0.92"/>
+  <rect x="388" y="592" width="258" height="22" rx="11" fill="#EAF7FD" fill-opacity="0.82"/>
+  <text x="116" y="968" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-0.06em">Void Y2K Sunglasses</text>
+  <text x="118" y="1028" fill="#F7F2EA" fill-opacity="0.68" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">INK FRAME / SMOKE LENS / LOW PROFILE</text>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="124" x2="816" y2="1020" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#3B6878"/>
+      <stop offset="0.56" stop-color="#244552"/>
+      <stop offset="1" stop-color="#121B22"/>
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,18 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#171E23"/>
+  <rect x="64" y="64" width="832" height="1032" rx="52" fill="url(#paint0_linear)"/>
+  <circle cx="174" cy="232" r="118" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="760" cy="918" r="170" fill="#C5F0FF" fill-opacity="0.22"/>
+  <path d="M234 468C248 412 296 374 354 374H420C476 374 524 409 540 462L558 528H468C422 528 384 566 384 612V618H316C256 618 208 570 208 510C208 496 210 482 214 468H234Z" fill="#0C1116" fill-opacity="0.86"/>
+  <path d="M426 528H534L548 472C562 416 610 378 668 378H716C780 378 832 430 832 494C832 560 778 614 712 614H642V608C642 564 606 528 562 528H426Z" fill="#0C1116" fill-opacity="0.86"/>
+  <rect x="384" y="586" width="258" height="26" rx="13" fill="#F7F2EA" fill-opacity="0.85"/>
+  <text x="116" y="978" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-0.06em">Sunglasses</text>
+  <text x="118" y="1034" fill="#F7F2EA" fill-opacity="0.72" font-family="Manrope, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="0.12em">NORTHSTAR SUPPLY / EYEWEAR</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="118" y1="126" x2="810" y2="1030" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#345E6A"/>
+      <stop offset="0.52" stop-color="#21414D"/>
+      <stop offset="1" stop-color="#14232B"/>
+    </linearGradient>
+  </defs>
+</svg>

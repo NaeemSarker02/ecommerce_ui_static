@@ -1,0 +1,21 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#1F231E"/>
+  <rect x="64" y="64" width="832" height="1032" rx="56" fill="url(#bg)"/>
+  <circle cx="758" cy="244" r="140" fill="#FFFFFF" fill-opacity="0.08"/>
+  <path d="M260 570C334 482 442 438 554 450C626 458 692 488 746 536" stroke="#E7E3DA" stroke-width="18" stroke-linecap="round"/>
+  <circle cx="280" cy="570" r="48" fill="#111310"/>
+  <circle cx="360" cy="594" r="48" fill="#252A22"/>
+  <circle cx="440" cy="620" r="48" fill="#111310"/>
+  <circle cx="520" cy="646" r="48" fill="#252A22"/>
+  <circle cx="600" cy="672" r="48" fill="#111310"/>
+  <circle cx="680" cy="698" r="48" fill="#252A22"/>
+  <text x="116" y="968" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-0.06em">Stacked Bead Bracelet</text>
+  <text x="118" y="1028" fill="#F7F2EA" fill-opacity="0.68" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">BLACK / MATTE TEXTURE / STACK READY</text>
+  <defs>
+    <linearGradient id="bg" x1="118" y1="130" x2="816" y2="1026" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#6A7D44"/>
+      <stop offset="0.54" stop-color="#455332"/>
+      <stop offset="1" stop-color="#242A21"/>
+    </linearGradient>
+  </defs>
+</svg>

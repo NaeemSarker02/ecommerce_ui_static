@@ -1,0 +1,50 @@
+:root {
+  --font-display: "Sora", sans-serif;
+  --font-body: "Manrope", sans-serif;
+  --color-ink: #101010;
+  --color-ink-soft: #545454;
+  --color-surface: #ffffff;
+  --color-surface-strong: #f0ede6;
+  --color-cream: #f8f4ed;
+  --color-border: rgba(16, 16, 16, 0.12);
+  --color-accent: #cc5f24;
+  --color-accent-soft: #f7dccf;
+  --color-success: #2d6a4f;
+  --shadow-soft: 0 20px 45px rgba(16, 16, 16, 0.08);
+  --shadow-card: 0 14px 24px rgba(16, 16, 16, 0.08);
+  --radius-xs: 0.75rem;
+  --radius-sm: 1rem;
+  --radius-md: 1.5rem;
+  --radius-lg: 2rem;
+  --container-width: min(1180px, calc(100vw - 2rem));
+}
+
+.theme-carbon {
+  --theme-from: #2d2b2a;
+  --theme-to: #7f7a74;
+}
+
+.theme-clay {
+  --theme-from: #4f342d;
+  --theme-to: #d29d7c;
+}
+
+.theme-olive {
+  --theme-from: #2d3828;
+  --theme-to: #98ae73;
+}
+
+.theme-ocean {
+  --theme-from: #1c3947;
+  --theme-to: #71b7cf;
+}
+
+.theme-wine {
+  --theme-from: #411a21;
+  --theme-to: #be7380;
+}
+
+.theme-sand {
+  --theme-from: #5d493a;
+  --theme-to: #d4b58d;
+}

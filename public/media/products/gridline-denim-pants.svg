@@ -1,0 +1,18 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#1A1717"/>
+  <rect x="64" y="64" width="832" height="1032" rx="56" fill="url(#bg)"/>
+  <circle cx="724" cy="226" r="132" fill="#FFFFFF" fill-opacity="0.08"/>
+  <path d="M360 266H600L644 438L584 834H470L444 524L418 834H304L360 438L360 266Z" fill="#34475F" fill-opacity="0.94"/>
+  <path d="M600 266L656 438L592 834H704L748 448L700 266H600Z" fill="#405674" fill-opacity="0.92"/>
+  <path d="M418 420L566 566" stroke="#C5D4E6" stroke-opacity="0.46" stroke-width="14" stroke-linecap="round"/>
+  <path d="M560 404L416 644" stroke="#C5D4E6" stroke-opacity="0.46" stroke-width="14" stroke-linecap="round"/>
+  <text x="116" y="968" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-0.06em">Gridline Baggy Denim</text>
+  <text x="118" y="1028" fill="#F7F2EA" fill-opacity="0.68" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">INDIGO / GEOMETRIC SEAMS / WIDE LEG</text>
+  <defs>
+    <linearGradient id="bg" x1="118" y1="130" x2="812" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#7E5C4B"/>
+      <stop offset="0.52" stop-color="#51403A"/>
+      <stop offset="1" stop-color="#241F22"/>
+    </linearGradient>
+  </defs>
+</svg>

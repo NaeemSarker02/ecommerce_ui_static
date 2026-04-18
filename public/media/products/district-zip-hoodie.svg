@@ -1,0 +1,17 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#221716"/>
+  <rect x="64" y="64" width="832" height="1032" rx="56" fill="url(#bg)"/>
+  <circle cx="734" cy="260" r="146" fill="#FFD4B0" fill-opacity="0.24"/>
+  <path d="M292 336L418 246H542L666 336L738 462L650 512L604 446V832H358V446L312 512L224 462L292 336Z" fill="#6E5145" fill-opacity="0.92"/>
+  <path d="M480 314V832" stroke="#EEE6D9" stroke-opacity="0.6" stroke-width="16" stroke-linecap="round"/>
+  <path d="M416 246H542L564 314H396L416 246Z" fill="#1B1614" fill-opacity="0.9"/>
+  <text x="116" y="968" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="52" font-weight="700" letter-spacing="-0.06em">District Zip Hoodie</text>
+  <text x="118" y="1028" fill="#F7F2EA" fill-opacity="0.68" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">CLAY / HARDWARE ZIP / RELAXED CUT</text>
+  <defs>
+    <linearGradient id="bg" x1="118" y1="130" x2="812" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9A6954"/>
+      <stop offset="0.54" stop-color="#5A4037"/>
+      <stop offset="1" stop-color="#271C1A"/>
+    </linearGradient>
+  </defs>
+</svg>

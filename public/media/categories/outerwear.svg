@@ -1,0 +1,18 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#221C18"/>
+  <rect x="64" y="64" width="832" height="1032" rx="52" fill="url(#paint0_linear)"/>
+  <circle cx="765" cy="228" r="126" fill="#F2C089" fill-opacity="0.35"/>
+  <circle cx="228" cy="874" r="184" fill="#FFFFFF" fill-opacity="0.08"/>
+  <path d="M301 324L418 236H540L657 324L734 456L644 514L600 444V822H358V444L314 514L224 456L301 324Z" fill="#101010" fill-opacity="0.88"/>
+  <path d="M418 236H540L570 320H390L418 236Z" fill="#F7F2EA" fill-opacity="0.8"/>
+  <path d="M478 320H482V822H478V320Z" fill="#F7F2EA" fill-opacity="0.4"/>
+  <text x="116" y="978" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-0.06em">Jackets and Hoodies</text>
+  <text x="118" y="1034" fill="#F7F2EA" fill-opacity="0.72" font-family="Manrope, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="0.12em">NORTHSTAR SUPPLY / OUTERWEAR</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="116" y1="138" x2="818" y2="1038" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#5D493C"/>
+      <stop offset="0.55" stop-color="#2D2620"/>
+      <stop offset="1" stop-color="#171412"/>
+    </linearGradient>
+  </defs>
+</svg>

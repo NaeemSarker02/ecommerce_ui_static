@@ -1,0 +1,17 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#2E171A"/>
+  <rect x="64" y="64" width="832" height="1032" rx="56" fill="url(#bg)"/>
+  <circle cx="214" cy="258" r="138" fill="#FFFFFF" fill-opacity="0.08"/>
+  <path d="M480 284L744 548L480 812L216 548L480 284Z" fill="#641E2B" fill-opacity="0.92"/>
+  <path d="M480 360L668 548L480 736L292 548L480 360Z" stroke="#F7E7E2" stroke-opacity="0.78" stroke-width="18" stroke-dasharray="10 16"/>
+  <circle cx="480" cy="548" r="40" fill="#F7E7E2" fill-opacity="0.82"/>
+  <text x="116" y="968" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-0.06em">Signal Utility Bandana</text>
+  <text x="118" y="1028" fill="#F7F2EA" fill-opacity="0.68" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">BURGUNDY / SOFT COTTON / NECK OR WRIST</text>
+  <defs>
+    <linearGradient id="bg" x1="118" y1="128" x2="816" y2="1024" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8E3B50"/>
+      <stop offset="0.55" stop-color="#5C2432"/>
+      <stop offset="1" stop-color="#2A1418"/>
+    </linearGradient>
+  </defs>
+</svg>

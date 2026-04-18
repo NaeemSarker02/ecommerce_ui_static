@@ -1,0 +1,19 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#251F17"/>
+  <rect x="64" y="64" width="832" height="1032" rx="56" fill="url(#bg)"/>
+  <circle cx="768" cy="254" r="136" fill="#FFE0B8" fill-opacity="0.24"/>
+  <path d="M294 518C346 458 426 424 510 430C590 436 664 484 714 556" stroke="#F1E4D1" stroke-width="20" stroke-linecap="round"/>
+  <circle cx="304" cy="520" r="68" fill="#1A1712"/>
+  <circle cx="412" cy="566" r="68" fill="#2B2620"/>
+  <circle cx="520" cy="612" r="68" fill="#1A1712"/>
+  <circle cx="628" cy="658" r="68" fill="#2B2620"/>
+  <text x="116" y="968" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="54" font-weight="700" letter-spacing="-0.06em">Arc Link Bracelet</text>
+  <text x="118" y="1028" fill="#F7F2EA" fill-opacity="0.68" font-family="Manrope, Arial, sans-serif" font-size="22" font-weight="800" letter-spacing="0.12em">GRAPHITE / INTERLOCKED LINKS / LIGHTWEIGHT</text>
+  <defs>
+    <linearGradient id="bg" x1="120" y1="130" x2="816" y2="1022" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#A28761"/>
+      <stop offset="0.54" stop-color="#6A5842"/>
+      <stop offset="1" stop-color="#2A241D"/>
+    </linearGradient>
+  </defs>
+</svg>

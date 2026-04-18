@@ -1,0 +1,20 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#29231B"/>
+  <rect x="64" y="64" width="832" height="1032" rx="52" fill="url(#paint0_linear)"/>
+  <circle cx="786" cy="260" r="140" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="188" cy="872" r="190" fill="#F8D7A9" fill-opacity="0.28"/>
+  <circle cx="316" cy="500" r="72" fill="#1A1714" fill-opacity="0.92"/>
+  <circle cx="424" cy="564" r="72" fill="#2A2621" fill-opacity="0.92"/>
+  <circle cx="532" cy="628" r="72" fill="#1A1714" fill-opacity="0.92"/>
+  <circle cx="640" cy="692" r="72" fill="#2A2621" fill-opacity="0.92"/>
+  <path d="M262 448C328 388 406 352 486 348C594 342 692 398 760 498" stroke="#F7F2EA" stroke-opacity="0.82" stroke-width="20" stroke-linecap="round"/>
+  <text x="116" y="978" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-0.06em">Bracelets</text>
+  <text x="118" y="1034" fill="#F7F2EA" fill-opacity="0.72" font-family="Manrope, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="0.12em">NORTHSTAR SUPPLY / ACCESSORIES</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="118" y1="132" x2="804" y2="1028" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#9C8562"/>
+      <stop offset="0.55" stop-color="#665743"/>
+      <stop offset="1" stop-color="#2E2821"/>
+    </linearGradient>
+  </defs>
+</svg>

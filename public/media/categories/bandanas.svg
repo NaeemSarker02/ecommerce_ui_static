@@ -1,0 +1,18 @@
+<svg width="960" height="1160" viewBox="0 0 960 1160" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="960" height="1160" rx="72" fill="#31181B"/>
+  <rect x="64" y="64" width="832" height="1032" rx="52" fill="url(#paint0_linear)"/>
+  <circle cx="200" cy="270" r="142" fill="#FFFFFF" fill-opacity="0.08"/>
+  <circle cx="760" cy="870" r="186" fill="#F0A7B6" fill-opacity="0.22"/>
+  <path d="M478 278L742 542L478 806L214 542L478 278Z" fill="#3A1017" fill-opacity="0.92"/>
+  <path d="M478 362L658 542L478 722L298 542L478 362Z" stroke="#F7F2EA" stroke-opacity="0.78" stroke-width="18" stroke-dasharray="12 16"/>
+  <circle cx="478" cy="542" r="42" fill="#F7F2EA" fill-opacity="0.85"/>
+  <text x="116" y="978" fill="#F7F2EA" font-family="Sora, Arial, sans-serif" font-size="58" font-weight="700" letter-spacing="-0.06em">Bandanas</text>
+  <text x="118" y="1034" fill="#F7F2EA" fill-opacity="0.72" font-family="Manrope, Arial, sans-serif" font-size="24" font-weight="700" letter-spacing="0.12em">NORTHSTAR SUPPLY / UTILITY DROP</text>
+  <defs>
+    <linearGradient id="paint0_linear" x1="114" y1="126" x2="810" y2="1022" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#8A3244"/>
+      <stop offset="0.55" stop-color="#5C1E2B"/>
+      <stop offset="1" stop-color="#2A1215"/>
+    </linearGradient>
+  </defs>
+</svg>
