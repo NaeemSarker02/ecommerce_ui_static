@@ -578,6 +578,11 @@ To keep the project easy to maintain, follow these rules for future development:
 - help page now includes a live storefront-operations guide derived from shared shipping, availability, and care metadata
 - help page support form now adapts guidance, placeholder copy, validation rules, and success messaging to the selected support topic
 - checkout confirmation now generates a mock order reference and deep-links into help with a prefilled order-status support request
+- help page now includes a demo order-status lookup panel and recent-order localStorage memory for quick support handoff without the checkout link
+- homepage and footer were adjusted toward the reference site's category-first merchandising rhythm while keeping original brand, content, and asset choices
+- homepage was further tightened into a denser storefront landing flow with direct hero merchandising, 5-up category browsing, 4-up featured grids, and category banner lanes
+- header and navigation were upgraded with a two-level shell, horizontal category rail, and proper mobile navigation panel for faster storefront browsing
+- shared category and product cards were tightened into a denser catalog presentation with compact copy, stronger price rows, and 4-up large-screen product grids
 - static support pages upgraded with richer content sections, FAQ blocks, and sidebars
 - README added
 - Context.md documentation added

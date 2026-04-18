@@ -4,7 +4,7 @@ import { formatPrice } from "@/scripts/lib/format";
 import { calculateTotals, getCartOperationalSummary, getDetailedCartItems, getShippingZone } from "@/scripts/lib/cart-helpers";
 import { pageUrl } from "@/scripts/lib/router";
 import { bootPage } from "@/scripts/main";
-import { clearCart, getAppliedPromoCode, getCart } from "@/scripts/state/cart-state";
+import { clearCart, getAppliedPromoCode, getCart, setRecentOrder } from "@/scripts/state/cart-state";
 
 const fieldHelp = {
   fullName: "Use the name needed for delivery confirmation.",
@@ -437,12 +437,29 @@ function renderCheckout(root, formState = createFormState(), validationErrors = 
     const zone = getShippingZone(formData.get("zone"));
     const paymentMethod = getPaymentMethod(formData.get("paymentMethod"));
     const orderReference = buildOrderReference(formState);
+    const fullName = String(formData.get("fullName") || "Customer");
+    const phone = String(formData.get("phone") || siteMeta.contact.phone);
+    const orderNote = String(formData.get("orderNote") || "");
+
+    setRecentOrder({
+      reference: orderReference,
+      fullName,
+      phone,
+      orderNote,
+      zoneId: zone.id,
+      zoneLabel: zone.label,
+      zoneEta: zone.eta,
+      paymentLabel: paymentMethod.label,
+      total,
+      createdAt: new Date().toISOString()
+    });
+
     clearCart();
     window.dispatchEvent(new CustomEvent("cart:updated", { detail: [] }));
     renderSuccess(root, {
-      fullName: formData.get("fullName") || "Customer",
-      phone: formData.get("phone") || siteMeta.contact.phone,
-      orderNote: formData.get("orderNote") || "",
+      fullName,
+      phone,
+      orderNote,
       zone,
       paymentLabel: paymentMethod.label,
       orderReference,

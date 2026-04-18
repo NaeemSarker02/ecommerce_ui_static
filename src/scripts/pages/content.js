@@ -3,6 +3,7 @@ import { escapeHtml, qs } from "@/scripts/lib/dom";
 import { formatPrice } from "@/scripts/lib/format";
 import { getParam, pageUrl } from "@/scripts/lib/router";
 import { bootPage } from "@/scripts/main";
+import { getRecentOrder } from "@/scripts/state/cart-state";
 
 const pageKey = document.body.dataset.page;
 const content = staticPages[pageKey] ?? staticPages.about;
@@ -24,6 +25,8 @@ const defaultSupportTopicGuide = {
     "The selected route should shape the support response and next-step copy."
   ]
 };
+
+const ORDER_REFERENCE_PATTERN = /^NS-(\d{6})-(DHK|CTG)-(\d{4})$/;
 
 function renderSection(section) {
   return `
@@ -58,6 +61,68 @@ function getSupportTopicConfig(formConfig, topicValue) {
   return formConfig.topics.find((topic) => topic.value === topicValue) ?? null;
 }
 
+function normalizeOrderReference(value) {
+  return String(value ?? "").trim().toUpperCase();
+}
+
+function resolveLookupZone(zoneCode) {
+  const zoneId = zoneCode === "DHK" ? "dhaka" : "outside-dhaka";
+  return commerceMeta.shippingZones.find((zone) => zone.id === zoneId) ?? commerceMeta.shippingZones[0];
+}
+
+function buildLookupResult(reference, recentOrder = getRecentOrder()) {
+  const normalizedReference = normalizeOrderReference(reference);
+  const recentMatch = recentOrder?.reference === normalizedReference ? recentOrder : null;
+  const match = ORDER_REFERENCE_PATTERN.exec(normalizedReference);
+
+  if (!match) {
+    return {
+      valid: false,
+      reference: normalizedReference,
+      error: staticPages.help.orderLookup.invalidState
+    };
+  }
+
+  const [, stamp, zoneCode, phoneTail] = match;
+  const zone = recentMatch ? { label: recentMatch.zoneLabel, eta: recentMatch.zoneEta } : resolveLookupZone(zoneCode);
+  const statusVariants = [
+    {
+      label: "Awaiting confirmation",
+      copy: "The order is in the confirmation-first queue and still needs the standard delivery confirmation step."
+    },
+    {
+      label: "Packed for dispatch",
+      copy: "The order has cleared the demo confirmation stage and is now prepared for dispatch handoff."
+    },
+    {
+      label: "Out for delivery",
+      copy: "The order is in the active delivery window and should follow the zone ETA already shown at checkout."
+    }
+  ];
+  const status = recentMatch
+    ? statusVariants[1]
+    : statusVariants[Number(phoneTail.at(-1) ?? 0) % statusVariants.length];
+
+  return {
+    valid: true,
+    source: recentMatch ? "recent-order" : "reference-pattern",
+    reference: normalizedReference,
+    dateLabel: recentMatch?.createdAt ? new Date(recentMatch.createdAt).toLocaleDateString("en-BD", { year: "numeric", month: "short", day: "numeric" }) : `20${stamp.slice(0, 2)}-${stamp.slice(2, 4)}-${stamp.slice(4, 6)}`,
+    phoneTail,
+    fullName: recentMatch?.fullName ?? "Saved customer name not available in this lookup.",
+    phone: recentMatch?.phone ?? `Ending in ${phoneTail}`,
+    orderNote: recentMatch?.orderNote ?? "No saved delivery note is attached to this lookup.",
+    paymentLabel: recentMatch?.paymentLabel ?? "Checkout payment method saved in the confirmation-first demo flow.",
+    total: recentMatch?.total ?? null,
+    zoneLabel: zone.label,
+    zoneEta: zone.eta,
+    statusLabel: status.label,
+    statusCopy: recentMatch
+      ? `${status.copy} This result is using the latest demo checkout stored in localStorage on this browser.`
+      : `${status.copy} This result is inferred from the mock reference format because no exact local demo order was found.`
+  };
+}
+
 function getSupportPrefill(formConfig) {
   const topicValue = getParam("topic") ?? "";
   const topicConfig = getSupportTopicConfig(formConfig, topicValue);
@@ -71,6 +136,95 @@ function getSupportPrefill(formConfig) {
     orderRef,
     message: getParam("message") ?? (orderRef && topicValue === "order-status" ? `Need an update on order ${orderRef}.` : "")
   };
+}
+
+function renderLookupResult(result, lookupConfig) {
+  if (!result?.valid) {
+    return `
+      <div class="detail-note mt-6">
+        <h3>Reference not recognized</h3>
+        <p>${escapeHtml(result?.error ?? lookupConfig.invalidState)}</p>
+      </div>
+    `;
+  }
+
+  return `
+    <div class="mt-6 space-y-6">
+      <div class="info-grid">
+        <article class="info-card">
+          <h3>Status</h3>
+          <p>${escapeHtml(result.statusLabel)}</p>
+        </article>
+        <article class="info-card">
+          <h3>Delivery zone</h3>
+          <p>${escapeHtml(result.zoneLabel)} • ${escapeHtml(result.zoneEta)}</p>
+        </article>
+        <article class="info-card">
+          <h3>Reference</h3>
+          <p>${escapeHtml(result.reference)}</p>
+        </article>
+        <article class="info-card">
+          <h3>Saved total</h3>
+          <p>${result.total ? escapeHtml(formatPrice(result.total)) : "Available after checkout save"}</p>
+        </article>
+      </div>
+      <div class="support-layout">
+        <article class="surface-card policy-copy p-6 md:p-8">
+          <h2>Status detail</h2>
+          <p>${escapeHtml(result.statusCopy)}</p>
+          <ul>
+            <li>${escapeHtml(`Created or inferred date: ${result.dateLabel}`)}</li>
+            <li>${escapeHtml(`Customer contact: ${result.phone}`)}</li>
+            <li>${escapeHtml(`Payment route: ${result.paymentLabel}`)}</li>
+          </ul>
+        </article>
+        <aside class="support-sidebar stack-md">
+          <article class="support-card">
+            <h3>Next action</h3>
+            <p>Use this same reference in the support form if the customer needs a live follow-up instead of a quick lookup.</p>
+            <div class="mt-4 flex flex-wrap gap-3">
+              <button class="button-secondary w-full sm:w-auto" type="button" data-prefill-support-reference="${escapeHtml(result.reference)}">${escapeHtml(lookupConfig.supportButtonLabel)}</button>
+            </div>
+          </article>
+        </aside>
+      </div>
+    </div>
+  `;
+}
+
+function renderOrderLookupPanel(lookupConfig) {
+  const recentOrder = getRecentOrder();
+  const referenceFromQuery = normalizeOrderReference(getParam("orderRef"));
+  const initialReference = referenceFromQuery || normalizeOrderReference(recentOrder?.reference);
+  const initialResult = initialReference ? buildLookupResult(initialReference, recentOrder) : null;
+  const feedbackText = recentOrder
+    ? `Latest demo order stored in this browser: ${recentOrder.reference}.`
+    : lookupConfig.emptyState;
+
+  return `
+    <section class="surface-card p-6 md:p-8" data-order-lookup-root>
+      <div class="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
+        <div class="max-w-3xl">
+          <span class="eyebrow">${lookupConfig.eyebrow}</span>
+          <h2 class="section-heading mt-5 text-[clamp(1.9rem,3.5vw,3rem)]">${lookupConfig.title}</h2>
+          <p class="section-copy mt-5">${lookupConfig.intro}</p>
+        </div>
+        ${recentOrder ? `<span class="summary-pill">Latest: ${escapeHtml(recentOrder.reference)}</span>` : ""}
+      </div>
+      <form class="summary-box mt-8" id="order-status-lookup-form" novalidate>
+        <div class="flex flex-col gap-4 md:flex-row md:items-end">
+          <label class="stack-sm block flex-1">
+            <span class="field-label">Order reference</span>
+            <input class="field-input" name="orderRef" autocomplete="off" placeholder="NS-260418-DHK-7405" value="${escapeHtml(initialReference)}" aria-describedby="order-lookup-feedback" />
+          </label>
+          <button class="button-primary w-full md:w-auto" type="submit">${lookupConfig.buttonLabel}</button>
+          ${recentOrder ? `<button class="button-secondary w-full md:w-auto" type="button" data-use-recent-order>${escapeHtml(lookupConfig.recentButtonLabel)}</button>` : ""}
+        </div>
+        <p class="text-muted mt-4 text-sm font-semibold form-alert" id="order-lookup-feedback" data-order-lookup-feedback>${escapeHtml(feedbackText)}</p>
+        <div data-order-lookup-result>${initialResult ? renderLookupResult(initialResult, lookupConfig) : ""}</div>
+      </form>
+    </section>
+  `;
 }
 
 function buildHelpOperationsGuide() {
@@ -402,6 +556,42 @@ function renderSupportSuccess(formConfig, state) {
   `;
 }
 
+function prefillSupportFromLookup(root, formConfig, result) {
+  const form = qs("#support-request-form", root);
+  if (!form || !result?.valid) {
+    return;
+  }
+
+  const fullNameField = qs('[name="fullName"]', form);
+  const phoneField = qs('[name="phone"]', form);
+  const topicField = qs('[name="topic"]', form);
+  const orderRefField = qs('[name="orderRef"]', form);
+  const messageField = qs('[name="message"]', form);
+
+  if (fullNameField && result.source === "recent-order") {
+    fullNameField.value = result.fullName;
+  }
+
+  if (phoneField && result.source === "recent-order") {
+    phoneField.value = result.phone;
+  }
+
+  if (topicField) {
+    topicField.value = "order-status";
+  }
+
+  if (orderRefField) {
+    orderRefField.value = result.reference;
+  }
+
+  if (messageField) {
+    messageField.value = `Need an update on order ${result.reference}. Current lookup shows: ${result.statusLabel}.`;
+  }
+
+  syncSupportFormUi(form, {}, formConfig);
+  form.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
 function bindSupportForm(root, formConfig) {
   const form = qs("#support-request-form", root);
   if (!form) {
@@ -479,6 +669,73 @@ function bindSupportForm(root, formConfig) {
   syncSupportFormUi(form, currentErrors, formConfig);
 }
 
+function bindOrderLookup(root, lookupConfig, formConfig) {
+  const lookupRoot = qs("[data-order-lookup-root]", root);
+  const form = qs("#order-status-lookup-form", lookupRoot);
+  const input = qs('[name="orderRef"]', lookupRoot);
+  const feedback = qs("[data-order-lookup-feedback]", lookupRoot);
+  const resultRoot = qs("[data-order-lookup-result]", lookupRoot);
+
+  if (!lookupRoot || !form || !input || !feedback || !resultRoot) {
+    return;
+  }
+
+  const renderLookup = (reference) => {
+    const normalizedReference = normalizeOrderReference(reference);
+
+    if (!normalizedReference) {
+      const recentOrder = getRecentOrder();
+      feedback.textContent = recentOrder ? `Latest demo order stored in this browser: ${recentOrder.reference}.` : lookupConfig.emptyState;
+      feedback.classList.remove("is-error");
+      resultRoot.innerHTML = "";
+      return;
+    }
+
+    const result = buildLookupResult(normalizedReference, getRecentOrder());
+    resultRoot.innerHTML = renderLookupResult(result, lookupConfig);
+
+    if (!result.valid) {
+      feedback.textContent = lookupConfig.invalidState;
+      feedback.classList.add("is-error");
+      return;
+    }
+
+    feedback.textContent = result.source === "recent-order"
+      ? "Loaded the latest demo order saved in this browser."
+      : "No exact local order was found, so this status is inferred from the mock reference pattern.";
+    feedback.classList.remove("is-error");
+  };
+
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    renderLookup(input.value);
+  });
+
+  lookupRoot.addEventListener("click", (event) => {
+    const target = event.target;
+    if (!(target instanceof HTMLElement)) {
+      return;
+    }
+
+    if (target.closest("[data-use-recent-order]")) {
+      const recentOrder = getRecentOrder();
+      if (!recentOrder?.reference) {
+        return;
+      }
+
+      input.value = recentOrder.reference;
+      renderLookup(recentOrder.reference);
+      return;
+    }
+
+    const supportTrigger = target.closest("[data-prefill-support-reference]");
+    if (supportTrigger instanceof HTMLElement) {
+      const result = buildLookupResult(supportTrigger.dataset.prefillSupportReference ?? "", getRecentOrder());
+      prefillSupportFromLookup(root, formConfig, result);
+    }
+  });
+}
+
 bootPage({
   pageKey,
   title: content.title,
@@ -538,6 +795,7 @@ bootPage({
             </section>
           ` : ""}
           ${pageKey === "help" ? renderHelpOperationsGuide() : ""}
+          ${pageKey === "help" && content.orderLookup ? renderOrderLookupPanel(content.orderLookup) : ""}
           ${content.contactForm ? renderSupportForm(content.contactForm) : ""}
           ${content.callout ? `
             <section class="support-cta surface-card p-6 md:p-8">
@@ -557,6 +815,10 @@ bootPage({
 
     if (content.contactForm) {
       bindSupportForm(root, content.contactForm);
+    }
+
+    if (pageKey === "help" && content.orderLookup && content.contactForm) {
+      bindOrderLookup(root, content.orderLookup, content.contactForm);
     }
   }
 });

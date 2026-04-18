@@ -23,6 +23,11 @@ function renderHeader(pageKey) {
   const navLinks = [
     { key: "home", label: "Home", href: pageUrl("home") },
     { key: "products", label: "All products", href: pageUrl("products") },
+    { key: "help", label: "Help center", href: pageUrl("help") },
+    { key: "about", label: "About", href: pageUrl("about") }
+  ];
+  const categoryLinks = [
+    { key: "all-category", label: "All category", href: `${pageUrl("home")}#categories` },
     ...categories.map((category) => ({
       key: category.slug,
       label: category.name,
@@ -34,32 +39,72 @@ function renderHeader(pageKey) {
     <div class="announcement-bar">
       <div class="container-shell flex items-center justify-between gap-4 px-4 py-3 text-xs font-extrabold uppercase tracking-[0.18em] sm:text-sm">
         <span>${siteMeta.announcement}</span>
-        <a class="hidden sm:inline" href="${pageUrl("checkout")}">Checkout flow preview</a>
+        <a class="hidden sm:inline" href="${pageUrl("help")}">Order support</a>
       </div>
     </div>
     <header class="site-header">
       <div class="container-shell px-4 py-4">
-        <div class="flex items-center justify-between gap-4">
-          <a class="brand-lockup" href="${pageUrl("home")}">${siteMeta.brandName}</a>
-          <nav class="hidden items-center gap-6 xl:flex">
-            ${navLinks
-              .map(
-                (link) =>
-                  `<a class="nav-link ${pageKey === link.key || (pageKey === "category" && activeCategory === link.key) ? "is-active" : ""}" href="${link.href}">${link.label}</a>`
-              )
-              .join("")}
-          </nav>
-          <div class="flex items-center gap-3">
-            <a class="button-ghost hidden sm:inline-flex" href="${pageUrl("products")}">Shop the catalog</a>
+        <div class="header-main-row">
+          <div class="header-actions-left">
+            <button class="button-ghost button-compact xl:hidden" type="button" aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu" data-open-menu>Menu</button>
+            <a class="button-ghost hidden sm:inline-flex" href="${pageUrl("products")}">Shop now</a>
+          </div>
+          <a class="brand-lockup header-brand" href="${pageUrl("home")}">${siteMeta.brandName}</a>
+          <div class="header-actions-right">
+            <a class="button-ghost hidden lg:inline-flex" href="${pageUrl("help")}">Support</a>
             <button class="button-secondary button-compact" type="button" aria-controls="site-cart-drawer" aria-expanded="false" aria-label="Open cart" data-open-cart>
               Cart
               <span class="cart-count-badge" aria-live="polite" data-cart-count>${getCartCount()}</span>
             </button>
-            <button class="button-ghost button-compact xl:hidden" type="button" aria-controls="mobile-navigation" aria-expanded="false" aria-label="Open navigation menu" data-open-menu>Menu</button>
           </div>
         </div>
-        <div id="mobile-navigation" class="bg-surface rounded-panel border-soft mt-4 hidden flex-col gap-3 border p-4 xl:hidden" hidden data-mobile-menu>
-          ${navLinks.map((link) => `<a class="nav-link ${pageKey === link.key || (pageKey === "category" && activeCategory === link.key) ? "is-active" : ""}" href="${link.href}">${link.label}</a>`).join("")}
+        <div class="header-secondary-row">
+          <nav class="hidden items-center gap-6 xl:flex">
+            ${navLinks
+              .map(
+                (link) => `<a class="nav-link ${pageKey === link.key ? "is-active" : ""}" href="${link.href}">${link.label}</a>`
+              )
+              .join("")}
+          </nav>
+          <a class="header-inline-link hidden xl:inline-flex" href="${pageUrl("checkout")}">Checkout</a>
+        </div>
+        <div class="category-rail-wrap">
+          <nav class="category-rail" aria-label="Shop categories">
+            ${categoryLinks
+              .map(
+                (link) => `<a class="category-rail-link ${activeCategory === link.key || (!activeCategory && link.key === "all-category" && pageKey === "home") ? "is-active" : ""}" href="${link.href}">${link.label}</a>`
+              )
+              .join("")}
+          </nav>
+        </div>
+        <div class="mobile-nav-backdrop xl:hidden" hidden data-mobile-backdrop></div>
+        <div id="mobile-navigation" class="mobile-nav-panel xl:hidden" hidden data-mobile-menu aria-hidden="true">
+          <div class="mobile-nav-header">
+            <div>
+              <p class="text-accent text-xs font-extrabold uppercase tracking-[0.16em]">Browse</p>
+              <h2 class="mt-2 text-2xl font-black tracking-tight">Store navigation</h2>
+            </div>
+            <button class="button-ghost button-compact" type="button" aria-label="Close navigation menu" data-close-menu>Close</button>
+          </div>
+          <div class="mobile-nav-section">
+            <p class="mobile-nav-label">Quick links</p>
+            <div class="mobile-nav-links">
+              ${navLinks.map((link) => `<a class="nav-link ${pageKey === link.key ? "is-active" : ""}" href="${link.href}">${link.label}</a>`).join("")}
+            </div>
+          </div>
+          <div class="mobile-nav-section">
+            <p class="mobile-nav-label">Categories</p>
+            <div class="mobile-nav-links">
+              ${categoryLinks.map((link) => `<a class="nav-link ${activeCategory === link.key ? "is-active" : ""}" href="${link.href}">${link.label}</a>`).join("")}
+            </div>
+          </div>
+          <div class="mobile-nav-section">
+            <p class="mobile-nav-label">Support</p>
+            <div class="mobile-nav-links">
+              <a class="button-secondary w-full" href="${pageUrl("help")}">Help center</a>
+              <a class="button-ghost w-full" href="${pageUrl("checkout")}">Checkout preview</a>
+            </div>
+          </div>
         </div>
       </div>
     </header>
@@ -69,27 +114,33 @@ function renderHeader(pageKey) {
 function renderFooter() {
   return `
     <footer class="bg-surface border-soft border-t">
-      <div class="container-shell grid gap-10 px-4 py-16 md:grid-cols-[1.2fr,0.9fr,0.9fr,0.9fr]">
+      <div class="container-shell grid gap-10 px-4 py-16 md:grid-cols-[1.1fr,0.9fr,0.9fr,0.9fr] xl:grid-cols-[1.1fr,0.85fr,0.85fr,0.85fr,0.85fr]">
         <div class="stack-md">
           <p class="brand-lockup">${siteMeta.brandName}</p>
-          <p class="text-muted max-w-md text-sm leading-7">${siteMeta.tagline} The project is intentionally structured to scale into a real commerce build later.</p>
+          <p class="text-muted max-w-md text-sm leading-7">${siteMeta.tagline} The storefront keeps a category-first shopping flow, confirmation-first delivery pattern, and reusable support routes for later commerce expansion.</p>
         </div>
         <div class="stack-sm">
           <p class="text-sm font-extrabold uppercase tracking-[0.16em]">Quick links</p>
+          <a href="${pageUrl("home")}">Home</a>
+          <a href="${pageUrl("products")}">All products</a>
+          <a href="${pageUrl("home")}#categories">All category</a>
           <a href="${pageUrl("about")}">About</a>
           <a href="${pageUrl("help")}">Help center</a>
-          <a href="${pageUrl("privacy")}">Privacy policy</a>
-          <a href="${pageUrl("terms")}">Terms</a>
-          <a href="${pageUrl("returns")}">Returns</a>
         </div>
         <div class="stack-sm">
-          <p class="text-sm font-extrabold uppercase tracking-[0.16em]">Contact</p>
+          <p class="text-sm font-extrabold uppercase tracking-[0.16em]">Policies</p>
+          <a href="${pageUrl("privacy")}">Privacy policy</a>
+          <a href="${pageUrl("terms")}">Terms and conditions</a>
+          <a href="${pageUrl("returns")}">Return and cancellation</a>
+        </div>
+        <div class="stack-sm">
+          <p class="text-sm font-extrabold uppercase tracking-[0.16em]">Contact us</p>
           <p>${siteMeta.contact.phone}</p>
           <p>${siteMeta.contact.email}</p>
           <p>${siteMeta.contact.address}</p>
         </div>
         <div class="stack-sm">
-          <p class="text-sm font-extrabold uppercase tracking-[0.16em]">Follow</p>
+          <p class="text-sm font-extrabold uppercase tracking-[0.16em]">Follow us</p>
           ${siteMeta.socialLinks.map((link) => `<a href="${link.href}">${link.label}</a>`).join("")}
         </div>
       </div>
@@ -163,21 +214,25 @@ function renderCartDrawer() {
 
 function setMenuState(nextState) {
   const menu = qs("[data-mobile-menu]");
+  const backdrop = qs("[data-mobile-backdrop]");
   const toggle = qs("[data-open-menu]");
 
-  if (!menu || !toggle) {
+  if (!menu || !toggle || !backdrop) {
     return;
   }
 
-  menu.classList.toggle("hidden", !nextState);
   menu.hidden = !nextState;
+  backdrop.hidden = !nextState;
+  menu.classList.toggle("is-open", nextState);
+  backdrop.classList.toggle("is-open", nextState);
+  menu.setAttribute("aria-hidden", String(!nextState));
   toggle.setAttribute("aria-expanded", String(nextState));
   document.body.classList.toggle("menu-open", nextState);
 
   if (nextState) {
     lastMenuTrigger = document.activeElement;
     window.requestAnimationFrame(() => {
-      menu.querySelector("a")?.focus();
+      qs("[data-close-menu]", menu)?.focus();
     });
     return;
   }
@@ -221,6 +276,8 @@ function bindShellEvents() {
   qs("[data-open-cart]")?.addEventListener("click", () => setDrawerState(true));
   qs("[data-close-cart]")?.addEventListener("click", () => setDrawerState(false));
   qs("[data-cart-backdrop]")?.addEventListener("click", () => setDrawerState(false));
+  qs("[data-mobile-backdrop]")?.addEventListener("click", () => setMenuState(false));
+  qs("[data-close-menu]")?.addEventListener("click", () => setMenuState(false));
 
   qs("[data-open-menu]")?.addEventListener("click", () => {
     const toggle = qs("[data-open-menu]");
