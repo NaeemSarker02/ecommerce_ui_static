@@ -60,7 +60,7 @@ function buildProductDetails(product, category) {
 
 export function renderCategoryCard(category) {
   return `
-    <a class="category-card surface-card block overflow-hidden p-3" href="${pageUrl("category", { category: category.slug })}">
+    <a class="category-card surface-card block overflow-hidden p-2.5" href="${pageUrl("category", { category: category.slug })}">
       ${renderMediaPanel({
         title: category.name,
         kicker: category.kicker,
@@ -71,15 +71,19 @@ export function renderCategoryCard(category) {
         imageSrc: category.media,
         imageAlt: category.name
       })}
-      <div class="px-2 pb-3 pt-4">
-        <div class="flex items-center justify-between gap-3">
+      <div class="category-card-body px-2.5 pb-2.5 pt-3.5">
+        <div class="flex items-start justify-between gap-3">
           <div>
-            <p class="text-accent text-sm font-extrabold uppercase tracking-[0.18em]">${escapeHtml(category.kicker)}</p>
-            <h3 class="mt-2 text-xl font-extrabold tracking-tight">${escapeHtml(category.name)}</h3>
+            <p class="card-section-label">${escapeHtml(category.kicker)}</p>
+            <h3 class="mt-2 text-lg font-extrabold tracking-tight md:text-xl">${escapeHtml(category.name)}</h3>
           </div>
-          <span class="text-muted text-sm font-extrabold uppercase tracking-[0.16em]">Open</span>
+          <span class="category-card-state">Open</span>
         </div>
-        <p class="text-muted mt-3 text-sm leading-7">${escapeHtml(category.description)}</p>
+        <p class="card-copy-clamp text-muted mt-3 text-sm leading-7">${escapeHtml(category.description)}</p>
+        <div class="category-card-footer mt-4">
+          <span class="category-card-link">View all</span>
+          <span class="text-muted text-xs font-extrabold uppercase tracking-[0.16em]">${escapeHtml(category.name)}</span>
+        </div>
       </div>
     </a>
   `;
@@ -92,7 +96,7 @@ export function renderProductCard(product) {
   const availability = product.availability ?? { label: product.stock, status: "in-stock" };
 
   return `
-    <article class="product-card surface-card overflow-hidden p-3">
+    <article class="product-card surface-card overflow-hidden p-2.5">
       <a class="block" href="${productUrl}" aria-label="View ${escapeHtml(product.name)}">
         ${renderMediaPanel({
           title: product.name,
@@ -105,28 +109,29 @@ export function renderProductCard(product) {
           imageAlt: product.name
         })}
       </a>
-      <div class="flex flex-wrap gap-2 px-2 pt-4">
+      <div class="product-card-body px-2.5 pb-2.5 pt-3.5">
+        <div class="flex flex-wrap gap-2">
         ${discount ? `<span class="badge-chip badge-sale">${escapeHtml(discount)}</span>` : ""}
         <span class="badge-chip badge-stock">${escapeHtml(availability.label)}</span>
         <span class="badge-chip badge-neutral">${escapeHtml(product.colors?.[0] ?? "Core")}</span>
-      </div>
-      <div class="stack-md px-2 pb-3 pt-4">
-        <div>
-          <a class="block" href="${productUrl}">
-            <h3 class="text-xl font-extrabold tracking-tight">${escapeHtml(product.name)}</h3>
-          </a>
-          <p class="text-muted mt-2 text-sm leading-7">${escapeHtml(product.shortDescription)}</p>
         </div>
-        <div class="flex items-end justify-between gap-4">
-          <div>
+        <div class="mt-4">
+          <p class="card-section-label">${escapeHtml(category?.name ?? "Northstar Supply")}</p>
+          <a class="block" href="${productUrl}">
+            <h3 class="mt-2 text-lg font-extrabold tracking-tight md:text-xl">${escapeHtml(product.name)}</h3>
+          </a>
+          <p class="card-copy-clamp text-muted mt-2 text-sm leading-7">${escapeHtml(product.shortDescription)}</p>
+        </div>
+        <div class="product-card-footer mt-4">
+          <div class="product-price-row">
             <p class="text-lg font-black tracking-tight">${formatPrice(product.price)}</p>
             ${product.originalPrice ? `<p class="text-muted text-sm font-semibold line-through">${formatPrice(product.originalPrice)}</p>` : ""}
           </div>
-          <a class="text-accent text-sm font-extrabold uppercase tracking-[0.14em]" href="${productUrl}">Details</a>
+          <a class="product-card-link" href="${productUrl}">Details</a>
         </div>
-        <div class="grid grid-cols-2 gap-3">
-          <button class="button-primary w-full" type="button" data-add-to-cart="${product.id}">Add to cart</button>
-          <button class="button-secondary w-full" type="button" data-buy-now="${product.id}">Buy now</button>
+        <div class="card-action-row mt-4 grid grid-cols-2 gap-2.5">
+          <button class="button-primary w-full button-compact" type="button" data-add-to-cart="${product.id}">Add to cart</button>
+          <button class="button-secondary w-full button-compact" type="button" data-buy-now="${product.id}">Buy now</button>
         </div>
       </div>
     </article>
@@ -135,7 +140,7 @@ export function renderProductCard(product) {
 
 export function renderProductGrid(items) {
   return items.length
-    ? `<div class="grid gap-5 sm:grid-cols-2 xl:grid-cols-3">${items.map(renderProductCard).join("")}</div>`
+    ? `<div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">${items.map(renderProductCard).join("")}</div>`
     : `
       <div class="surface-card p-8 text-center">
         <p class="text-accent text-sm font-extrabold uppercase tracking-[0.16em]">No matching items</p>

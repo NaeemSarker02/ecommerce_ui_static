@@ -822,6 +822,17 @@ export const staticPages = {
       ],
       responsePromise: "In a live version, this would create a support ticket and return a reference ID for follow-up."
     },
+    orderLookup: {
+      eyebrow: "Order lookup",
+      title: "Check the latest demo order status before opening support.",
+      intro:
+        "This mock lookup recognizes the seeded Northstar order-reference format and can reuse the most recent demo checkout saved in this browser.",
+      buttonLabel: "Check status",
+      recentButtonLabel: "Use latest demo order",
+      supportButtonLabel: "Use this in support form",
+      emptyState: "No recent demo order is stored yet. Complete checkout once to save a reference for quick help-page lookup.",
+      invalidState: "Use the mock order-reference format, for example NS-260418-DHK-7405."
+    },
     callout: {
       title: "Need the legal version of these rules?",
       copy: "Use the policy pages for the exact business wording once legal and operational rules are finalized.",

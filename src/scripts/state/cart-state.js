@@ -1,5 +1,6 @@
 const STORAGE_KEY = "northstar-cart";
 const PROMO_STORAGE_KEY = "northstar-promo";
+const RECENT_ORDER_STORAGE_KEY = "northstar-recent-order";
 
 function readCart() {
   try {
@@ -25,6 +26,16 @@ function readPromoCode() {
   }
 }
 
+function readRecentOrder() {
+  try {
+    const rawValue = window.localStorage.getItem(RECENT_ORDER_STORAGE_KEY);
+    const parsed = rawValue ? JSON.parse(rawValue) : null;
+    return parsed && typeof parsed === "object" ? parsed : null;
+  } catch {
+    return null;
+  }
+}
+
 function writePromoCode(nextCode) {
   if (nextCode) {
     window.localStorage.setItem(PROMO_STORAGE_KEY, nextCode);
@@ -33,6 +44,16 @@ function writePromoCode(nextCode) {
   }
 
   window.dispatchEvent(new CustomEvent("promo:updated", { detail: nextCode }));
+}
+
+function writeRecentOrder(order) {
+  if (order) {
+    window.localStorage.setItem(RECENT_ORDER_STORAGE_KEY, JSON.stringify(order));
+  } else {
+    window.localStorage.removeItem(RECENT_ORDER_STORAGE_KEY);
+  }
+
+  window.dispatchEvent(new CustomEvent("recent-order:updated", { detail: order ?? null }));
 }
 
 export function getCart() {
@@ -47,12 +68,24 @@ export function getAppliedPromoCode() {
   return readPromoCode();
 }
 
+export function getRecentOrder() {
+  return readRecentOrder();
+}
+
 export function setAppliedPromoCode(code) {
   writePromoCode(String(code ?? "").trim().toUpperCase());
 }
 
 export function clearAppliedPromoCode() {
   writePromoCode("");
+}
+
+export function setRecentOrder(order) {
+  writeRecentOrder(order);
+}
+
+export function clearRecentOrder() {
+  writeRecentOrder(null);
 }
 
 export function addToCart(product, quantity = 1) {
